@@ -39,4 +39,17 @@ class UsuarioTest {
             new Usuario("123.456.789-01", "Fulano", LocalDate.parse("2002-06-15"), "fulanogmail.com");
         });
     }
+
+    @Test
+    public void deveCriarUsuarioUsandoAFabricaDeUsuarios() {
+        FabricaDeUsuario fabrica = new FabricaDeUsuario();
+        Usuario usuario = fabrica.comNomeCpfNascimento(
+                "123.456.789-01", "Fulano", LocalDate.parse("2002-06-15"), "fulano@gmail.com"
+        );
+
+        Assertions.assertEquals("Fulano", usuario.getNome());
+
+        usuario = fabrica.incluiEndereco("012345-0", 12, "Apt. 12");
+        Assertions.assertEquals("012345-0", usuario.getEndereco().getCep());
+    }
 }
