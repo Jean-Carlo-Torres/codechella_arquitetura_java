@@ -31,4 +31,26 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
                 .map(u -> mapper.toDomain(u))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Usuario atualizarUsuario(Long id, Usuario usuario) {
+        return repository.findById(id)
+                .map(entity -> {
+                    entity.setCpf(usuario.getCpf());
+                    entity.setNome(usuario.getNome());
+                    entity.setNascimento(usuario.getNascimento());
+                    entity.setEmail(usuario.getEmail());
+                    repository.save(entity);
+                    return mapper.toDomain(entity);
+                })
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+    }
+
+    @Override
+    public void deletarUsuario(Long id) {
+        repository.findById(id)
+                .ifPresent(entity -> {
+                    repository.delete(entity);
+                });
+    }
 }
