@@ -1,5 +1,6 @@
 package br.com.alura.codechella.naousar;
 
+import br.com.alura.codechella.infra.persistence.EventoEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -14,7 +15,7 @@ public class Tipo {
     private Long id;
     @ManyToOne
     @JsonIgnore
-    private Evento evento;
+    private EventoEntity eventoEntity;
     @Enumerated(EnumType.STRING)
     private Setor setor;
     @Enumerated(EnumType.STRING)
@@ -44,12 +45,12 @@ public class Tipo {
         this.id = id;
     }
 
-    public Evento getEvento() {
-        return evento;
+    public EventoEntity getEvento() {
+        return eventoEntity;
     }
 
-    public void setEvento(Evento evento) {
-        this.evento = evento;
+    public void setEvento(EventoEntity eventoEntity) {
+        this.eventoEntity = eventoEntity;
     }
 
     public Setor getSetor() {

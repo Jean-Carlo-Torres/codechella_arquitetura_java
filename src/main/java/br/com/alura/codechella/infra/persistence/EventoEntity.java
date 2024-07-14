@@ -1,6 +1,9 @@
-package br.com.alura.codechella.naousar;
+package br.com.alura.codechella.infra.persistence;
 
 import br.com.alura.codechella.domain.Endereco;
+import br.com.alura.codechella.naousar.Categoria;
+import br.com.alura.codechella.naousar.DadosCadastroEvento;
+import br.com.alura.codechella.naousar.Tipo;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -9,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "eventos")
-public class Evento {
+public class EventoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,13 +22,13 @@ public class Evento {
     @Embedded
     private Endereco endereco;
     private LocalDateTime data;
-    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "eventoEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Tipo> tipoIngressos = new ArrayList<>();
 
-    public Evento() {
+    public EventoEntity() {
     }
 
-    public Evento(DadosCadastroEvento dados) {
+    public EventoEntity(DadosCadastroEvento dados) {
         this.categoria = dados.categoria();
         this.descricao = dados.descricao();
         this.endereco = new Endereco(dados.endereco());

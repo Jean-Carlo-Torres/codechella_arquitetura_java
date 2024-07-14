@@ -1,14 +1,21 @@
 package br.com.alura.codechella.domain;
 
+import br.com.alura.codechella.naousar.DadosEndereco;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Endereco {
     private String cep;
     private Integer numero;
     private String complemento;
 
-    public Endereco(String cep, Integer numero, String complemento) {
-        this.cep = cep;
-        this.numero = numero;
-        this.complemento = complemento;
+    public Endereco() {
+    }
+
+    public Endereco(DadosEndereco dados) {
+        this.cep = dados.cep();
+        this.numero = dados.numero();
+        this.complemento = dados.complemento();
     }
 
     public String getCep() {

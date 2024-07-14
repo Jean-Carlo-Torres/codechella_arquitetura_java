@@ -1,5 +1,6 @@
 package br.com.alura.codechella.naousar;
 
+import br.com.alura.codechella.domain.Endereco;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
